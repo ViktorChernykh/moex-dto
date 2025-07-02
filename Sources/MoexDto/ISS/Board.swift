@@ -33,7 +33,7 @@ public struct Board: Sendable, Codable {
 	// MARK: Stored properties
 	public let id: Int
 	public let boardGroupId: String
-	public let boardid: String
+	public let boardId: String
 	public let title: String
 	public let isTraded: Bool
 
@@ -41,13 +41,13 @@ public struct Board: Sendable, Codable {
 	public init(
 		id: Int,
 		boardGroupId: String,
-		boardid: String,
+		boardId: String,
 		title: String,
 		isTraded: Bool
 	) {
 		self.id = id
 		self.boardGroupId = boardGroupId
-		self.boardid = boardid
+		self.boardId = boardId
 		self.title = title
 		self.isTraded = isTraded
 	}
