@@ -1,6 +1,6 @@
 //
 //  News.swift
-//
+//  MoexDto
 //
 //  Created by Victor Chernykh on 25/02/2024.
 //

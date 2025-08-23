@@ -1,6 +1,6 @@
 //
 //  MarketStatisticSecurity.swift
-//
+//  MoexDto
 //
 //  Created by Victor Chernykh on 29.06.2024.
 //

@@ -1,6 +1,6 @@
 //
 //  Security.swift
-//
+//  MoexDto
 //
 //  Created by Victor Chernykh on 22/02/2024.
 //

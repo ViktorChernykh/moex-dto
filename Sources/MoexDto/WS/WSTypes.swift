@@ -1,6 +1,6 @@
 //
 //  WSTypes.swift
-//  moex-dto
+//  MoexDto
 //
 //  Created by Victor Chernykh on 06.11.2024.
 //
@@ -20,13 +20,25 @@ public enum WSCommandType: String, CustomStringConvertible {
 }
 
 public enum MXSE: String, CustomStringConvertible {
-	case orderbooks = "MXSE.orderbooks"
 	case candles = "MXSE.candles"
-	case securities = "MXSE.securities"
 	case lasttrades = "MXSE.lasttrades"
+	case orderbooks = "MXSE.orderbooks"
+	case securities = "MXSE.securities"
 
 	public var description: String {
 		rawValue
+	}
+	public var short: String {
+		switch self {
+		case .candles:
+			"c"
+		case .lasttrades:
+			"t"
+		case .orderbooks:
+			"o"
+		case .securities:
+			"s"
+		}
 	}
 }
 

@@ -1,17 +1,17 @@
 //
 //  DataElement.swift
-//  
+//  MoexDto
 //
 //  Created by Victor Chernykh on 22.07.2024.
 //
 
-import struct Foundation.Date
+import Foundation
 
 /// We use Enum to represent data that can be of different types (String, Double, Int, nil).
 public enum DataElement: Codable, Sendable {
 	case string(String)
-	case array([Double])
-	case int(Int)
+	case array([Decimal])
+	case int(Int64)
 	case null
 
 	// Encode.
@@ -32,15 +32,15 @@ public enum DataElement: Codable, Sendable {
 	// Decode.
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
-		if let value = try? container.decode(String.self) {
+		if let value: String = try? container.decode(String.self) {
 			self = .string(value)
 			return
 		}
-		if let value = try? container.decode([Double].self) {
+		if let value: [Decimal] = try? container.decode([Decimal].self) {
 			self = .array(value)
 			return
 		}
-		if let value = try? container.decode(Int.self) {
+		if let value: Int64 = try? container.decode(Int64.self) {
 			self = .int(value)
 			return
 		}
