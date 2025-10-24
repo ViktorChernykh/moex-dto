@@ -10,6 +10,8 @@ import struct Foundation.Data
 import class Foundation.JSONDecoder
 
 public struct AlgopackMessage: Codable, Sendable {
+	private static let decoder: JSONDecoder = .init()
+
 	public let title: String
 	public let headers: [String: String]
 	public let body: Snapshot?
@@ -39,7 +41,7 @@ public struct AlgopackMessage: Codable, Sendable {
 		guard let data: Data = parts[1].data(using: .utf8) else {
 			return .init(title: title, headers: headers, body: nil)
 		}
-		guard let body: Snapshot = try? JSONDecoder().decode(Snapshot.self, from: data) else {
+		guard let body: Snapshot = try? Self.decoder.decode(Snapshot.self, from: data) else {
 			return .init(title: title, headers: headers, body: nil)
 		}
 		return .init(title: title, headers: headers, body: body)
