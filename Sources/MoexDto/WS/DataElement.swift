@@ -11,7 +11,7 @@ import Foundation
 public enum DataElement: Codable, Sendable {
 	case string(String)
 	case array([Decimal])
-	case int(Int64)
+	case int(Int)
 	case null
 
 	// Encode.
@@ -40,7 +40,7 @@ public enum DataElement: Codable, Sendable {
 			self = .array(value)
 			return
 		}
-		if let value: Int64 = try? container.decode(Int64.self) {
+		if let value: Int = try? container.decode(Int.self) {
 			self = .int(value)
 			return
 		}
@@ -54,43 +54,6 @@ public enum DataElement: Codable, Sendable {
 			DecodingError.Context(
 				codingPath: decoder.codingPath,
 				debugDescription: "Wrong type for DataElement"
-			)
-		)
-	}
-}
-
-public enum PriceElement: Codable, Sendable {
-	case double(Double)
-	case int(Int)
-
-	// Encode.
-	public func encode(to encoder: Encoder) throws {
-		var container = encoder.singleValueContainer()
-		switch self {
-		case .int(let value):
-			try container.encode(value)
-		case .double(let value):
-			try container.encode(value)
-		}
-	}
-
-	// Decode.
-	public init(from decoder: Decoder) throws {
-		let container = try decoder.singleValueContainer()
-		if let value = try? container.decode(Int.self) {
-			self = .int(value)
-			return
-		}
-		if let value = try? container.decode(Double.self) {
-			self = .double(value)
-			return
-		}
-
-		throw DecodingError.typeMismatch(
-			PriceElement.self,
-			DecodingError.Context(
-				codingPath: decoder.codingPath,
-				debugDescription: "Wrong type for PriceElement"
 			)
 		)
 	}
